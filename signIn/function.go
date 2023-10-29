@@ -5,7 +5,6 @@ import (
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
-	"github.com/petapedia/peda"
 )
 
 func init() {
@@ -26,4 +25,8 @@ func signIn(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintf(w, peda.GCFPostHandler("MONGODATA", "berkatauto", "userLogin", r))
 
+}
+
+func GetToken(r *http.Request) string {
+	return r.Header.Get("Authorization")
 }

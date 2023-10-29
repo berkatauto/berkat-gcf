@@ -30,7 +30,3 @@ func signUp(w http.ResponseWriter, r *http.Request) {
 	response := peda.GCFHandler("MONGODATA", "berkatauto", "userLogin")
 	fmt.Fprintf(w, response)
 }
-
-func GetToken(r *http.Request) string {
-	return r.Header.Get("Authorization")
-}
