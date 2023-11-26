@@ -5,26 +5,32 @@ import (
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
+	berkatbepkg "github.com/berkatauto/berkat-bepkg"
 )
 
 func init() {
-	functions.HTTP("singIn", signIn)
+	functions.HTTP("basignIn", HelloSignIn)
 }
 
-func signIn(w http.ResponseWriter, r *http.Request) {
-	// Set CORS headers for the preflight request
-	if r.Method == http.MethodOptions {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "POST")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type,Authorization,Token")
-		w.Header().Set("Access-Control-Max-Age", "3600")
-		w.WriteHeader(http.StatusNoContent)
+func HelloSignIn(w http.ResponseWriter, r *http.Request) {
+	// Set header Access-Control-Allow-Origin untuk mengizinkan permintaan dari domain yang spesifik.
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	// Set header Access-Control-Allow-Methods untuk mengizinkan metode HTTP yang diizinkan.
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST")
+
+	// Set header Access-Control-Allow-Headers untuk mengizinkan header yang diizinkan dalam permintaan.
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+	if r.Method == "OPTIONS" {
+		// Jika permintaan adalah preflight OPTIONS, Anda hanya perlu mengirimkan header CORS.
 		return
 	}
-	// Set CORS headers for the main request.
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Fprintf(w, peda.GCFPostHandler("MONGODATA", "berkatauto", "userLogin", r))
 
+	// Tulis respons Anda ke Writer seperti yang Anda lakukan sebelumnya.
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	response := berkatbepkg.GCFCreateHandler("MONGOSTRING", "berkatauto", "userLogin", r)
+	fmt.Fprintf(w, response)
 }
 
 func GetToken(r *http.Request) string {
