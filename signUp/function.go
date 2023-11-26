@@ -9,10 +9,10 @@ import (
 )
 
 func init() {
-	functions.HTTP("baSignUp", HelloSignIn)
+	functions.HTTP("baSignUp", HelloSignUp)
 }
 
-func HelloSignIn(w http.ResponseWriter, r *http.Request) {
+func HelloSignUp(w http.ResponseWriter, r *http.Request) {
 	// Set header Access-Control-Allow-Origin untuk mengizinkan permintaan dari domain yang spesifik.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
