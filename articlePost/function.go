@@ -9,20 +9,30 @@ import (
 )
 
 func init() {
-	functions.HTTP("articlePost", articlePost)
+	functions.HTTP("baSignUp", HelloSignUp)
 }
 
-func articlePost(w http.ResponseWriter, r *http.Request) {
-	// Set CORS
-	if r.Method == http.MethodOptions {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-		w.Header().Set("Access-Control-Allow-Methods", "POST")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type,Authorization,Token")
-		w.Header().Set("Access-Control-Max-Age", "3600")
-		w.WriteHeader(http.StatusNoContent)
+func HelloSignUp(w http.ResponseWriter, r *http.Request) {
+	// Set header Access-Control-Allow-Origin untuk mengizinkan permintaan dari domain yang spesifik.
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	// Set header Access-Control-Allow-Methods untuk mengizinkan metode HTTP yang diizinkan.
+	w.Header().Set("Access-Control-Allow-Methods", "GET, POST")
+
+	// Set header Access-Control-Allow-Headers untuk mengizinkan header yang diizinkan dalam permintaan.
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+
+	if r.Method == "OPTIONS" {
+		// Jika permintaan adalah preflight OPTIONS, Anda hanya perlu mengirimkan header CORS.
 		return
 	}
-	// Set Cors Header for main
+
+	// Tulis respons Anda ke Writer seperti yang Anda lakukan sebelumnya.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Fprintf(w, berkatbepkg.GCFPostArticle("MONGODATA", "berkatauto", "articleSet"))
+	response := berkatbepkg.GCFPostArticle("MONGOSTRING", "berkatauto", "articleSet", r)
+	fmt.Fprintf(w, response)
+}
+
+func GetToken(r *http.Request) string {
+	return r.Header.Get("Authorization")
 }
