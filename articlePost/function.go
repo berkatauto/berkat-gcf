@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
+	berkatbepkg "github.com/berkatauto/berkat-bepkg"
 )
 
 func init() {
@@ -23,5 +24,5 @@ func articlePost(w http.ResponseWriter, r *http.Request) {
 	}
 	// Set Cors Header for main
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	fmt.Fprintf(w, peda.GCFPostHandler("MONGODATA", "berkatauto", "articleSet"))
+	fmt.Fprintf(w, berkatbepkg.GCFPostArticle("MONGODATA", "berkatauto", "articleSet"))
 }
