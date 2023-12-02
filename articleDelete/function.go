@@ -9,15 +9,15 @@ import (
 )
 
 func init() {
-	functions.HTTP("baSignUp", HelloSignUp)
+	functions.HTTP("baDeleteArticle", HelloDeleting)
 }
 
-func HelloSignUp(w http.ResponseWriter, r *http.Request) {
+func HelloDeleting(w http.ResponseWriter, r *http.Request) {
 	// Set header Access-Control-Allow-Origin untuk mengizinkan permintaan dari domain yang spesifik.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	// Set header Access-Control-Allow-Methods untuk mengizinkan metode HTTP yang diizinkan.
-	w.Header().Set("Access-Control-Allow-Methods", "POST")
+	w.Header().Set("Access-Control-Allow-Methods", "DELETE")
 
 	// Set header Access-Control-Allow-Headers untuk mengizinkan header yang diizinkan dalam permintaan.
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
