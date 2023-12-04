@@ -29,7 +29,7 @@ func HelloNowLoading(w http.ResponseWriter, r *http.Request) {
 
 	// Tulis respons Anda ke Writer seperti yang Anda lakukan sebelumnya.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	response := berkatbepkg.GCFHandler("MONGOSTRING", "berkatauto", "articleSet")
+	response := berkatbepkg.GCFHandler("MONGOSTRING", "berkatauto", "articleSet", r)
 	fmt.Fprintf(w, response)
 }
 
