@@ -24,7 +24,7 @@ func HelloSignUp(w http.ResponseWriter, r *http.Request) {
 
 	// Tulis respons Anda ke Writer seperti yang Anda lakukan sebelumnya.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	response := berkatbepkg.GCFCreateUserWToken("PASETOPRIVATEKEYENV", "MONGOSTRING", "berkatauto", "userLogin", r)
+	response := berkatbepkg.GCFCreateUserWToken("PASETOPRIVATE", "MONGOSTRING", "berkatauto", "userLogin", r)
 	fmt.Fprintf(w, response)
 }
 

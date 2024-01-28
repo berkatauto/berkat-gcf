@@ -24,7 +24,7 @@ func HelloSignIn(w http.ResponseWriter, r *http.Request) {
 
 	// Tulis respons Anda ke Writer seperti yang Anda lakukan sebelumnya.
 	w.Header().Set("Access-Control-Allow-Origin", "*")
-	response := berkatbepkg.GCFLoginHandler("PASETOPRIVATEKEYENV", "MONGOSTRING", "berkatauto", "userLogin", r)
+	response := berkatbepkg.GCFLoginHandler("PASETOPRIVATE", "MONGOSTRING", "berkatauto", "userLogin", r)
 	fmt.Fprintf(w, response)
 }
 
