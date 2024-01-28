@@ -1,10 +1,10 @@
-module github.com/berkatauto/berkat-gcf/getArticle
+module github.com/berkatauto/berkat-gcf
 
 go 1.21.3
 
 require (
 	github.com/GoogleCloudPlatform/functions-framework-go v1.8.0
-	github.com/berkatauto/berkat-bepkg v1.0.8
+	github.com/berkatauto/berkat-bepkg v1.1.2
 )
 
 require (
